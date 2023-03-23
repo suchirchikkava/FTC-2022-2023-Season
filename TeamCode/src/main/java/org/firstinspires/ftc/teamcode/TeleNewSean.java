@@ -77,10 +77,11 @@ public class TeleNewSean extends OpMode {
     }
 
     public void wheelsSetPower (int p1, int p3 ) {
-        wheel1.setPower(p1);
-        wheel2.setPower(p1);
-        wheel3.setPower(p3);
-        wheel4.setPower(p3);
+        wheelsSetPower( p1, p1, p3, p3 );
+    }
+
+    public void wheelsSetPower (int p1 ) {
+        wheelsSetPower( p1, p1, p1, p1 );
     }
 
     public void moveSlides (int distance) {
