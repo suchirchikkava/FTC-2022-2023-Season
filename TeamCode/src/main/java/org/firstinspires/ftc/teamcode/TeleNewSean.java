@@ -39,22 +39,25 @@ public class TeleNewSean extends OpMode {
     @Override
     public void loop() {
 
-        if (gamepad1.left_stick_y > -0.3 && gamepad1.left_stick_y < 0.3) { wheelsSetPower(0); }
-        if (gamepad1.left_stick_x > -0.3 && gamepad1.left_stick_x < 0.3) { wheelsSetPower(0); }
+        if (
+                (gamepad1.left_stick_y > -0.3 && gamepad1.left_stick_y < 0.3) ||
+                (gamepad1.left_stick_x > -0.3 && gamepad1.left_stick_x < 0.3) ||
+                (gamepad1.right_stick_y > -0.3 && gamepad1.right_stick_y < 0.3) ||
+                (gamepad1.right_stick_x > -0.3 && gamepad1.left_stick_x < 0.3)
+            ) { wheelsSetPower(0); }
+
         if (gamepad1.left_stick_y > 0.3) { wheelsSetPower( 0.7, -0.7, 0.7, -0.7 ); }
-        if (gamepad1.left_stick_y < -0.3) { wheelsSetPower( -0.7, 0.7, -0.7, 0.7 ); }
+        else if (gamepad1.left_stick_y < -0.3) { wheelsSetPower( -0.7, 0.7, -0.7, 0.7 ); }
         if (gamepad1.left_stick_x > 0.3) { wheelsSetPower( 0.7, -0.7 ); }
-        if (gamepad1.left_stick_x < -0.3) { wheelsSetPower( -0.7, 0.7 ); }
+        else if (gamepad1.left_stick_x < -0.3) { wheelsSetPower( -0.7, 0.7 ); }
 
         if (gamepad1.left_trigger ==1) { wheelsSetPower( 0.6 ); }
         if (gamepad1.right_trigger == 1) { wheelsSetPower( -0.6 ); }
 
-        if (gamepad1.right_stick_y > -0.3 && gamepad1.right_stick_y < 0.3) { wheelsSetPower(0); }
-        if (gamepad1.right_stick_x > -0.3 && gamepad1.left_stick_x < 0.3) { wheelsSetPower(0); }
         if (gamepad1.right_stick_y > 0.3) { wheelsSetPower( 0.35, -0.35 ); }
-        if (gamepad1.right_stick_y < -0.3) { wheelsSetPower( -0.35, 0.35 ); }
+        else if (gamepad1.right_stick_y < -0.3) { wheelsSetPower( -0.35, 0.35 ); }
         if (gamepad1.right_stick_x > 0.3) { wheelsSetPower( 0.35, -0.35 ); }
-        if (gamepad1.right_stick_x < -0.3) { wheelsSetPower( -0.35, 0.35 ); }
+        else if (gamepad1.right_stick_x < -0.3) { wheelsSetPower( -0.35, 0.35 ); }
 
         if (gamepad1.left_bumper) { claw.setPosition(openClaw); }
         if (gamepad1.right_bumper) { claw.setPosition(closeClaw); }
