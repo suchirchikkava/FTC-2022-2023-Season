@@ -39,133 +39,52 @@ public class TeleNewSean extends OpMode {
     @Override
     public void loop() {
 
-        if (gamepad1.left_stick_y > -0.3 && gamepad1.left_stick_y < 0.3) {
-            wheel1.setPower(0);
-            wheel2.setPower(0);
-            wheel3.setPower(0);
-            wheel4.setPower(0);
-        }
-        if (gamepad1.left_stick_x > -0.3 && gamepad1.left_stick_x < 0.3) {
-            wheel1.setPower(0);
-            wheel2.setPower(0);
-            wheel3.setPower(0);
-            wheel4.setPower(0);
-        }
-        if (gamepad1.left_stick_y > 0.3) {
-            wheel1.setPower(0.7);
-            wheel2.setPower(-0.7);
-            wheel3.setPower(0.7);
-            wheel4.setPower(-0.7);
-        }
-        if (gamepad1.left_stick_y < -0.3) {
-            wheel1.setPower(-0.7);
-            wheel2.setPower(0.7);
-            wheel3.setPower(-0.7);
-            wheel4.setPower(0.7);
-        }
-        if (gamepad1.left_stick_x > 0.3) {
-            wheel1.setPower(0.7);
-            wheel2.setPower(0.7);
-            wheel3.setPower(-0.7);
-            wheel4.setPower(-0.7);
-        }
-        if (gamepad1.left_stick_x < -0.3) {
-            wheel1.setPower(-0.7);
-            wheel2.setPower(-0.7);
-            wheel3.setPower(0.7);
-            wheel4.setPower(0.7);
-        }
+        if (
+                (gamepad1.left_stick_y > -0.3 && gamepad1.left_stick_y < 0.3) ||
+                (gamepad1.left_stick_x > -0.3 && gamepad1.left_stick_x < 0.3) ||
+                (gamepad1.right_stick_y > -0.3 && gamepad1.right_stick_y < 0.3) ||
+                (gamepad1.right_stick_x > -0.3 && gamepad1.left_stick_x < 0.3)
+            ) { wheelsSetPower(0); }
 
-        if (gamepad1.left_trigger ==1) {
-            wheel1.setPower(0.6);
-            wheel2.setPower(0.6);
-            wheel3.setPower(0.6);
-            wheel4.setPower(0.6);
-        }
-        if (gamepad1.right_trigger == 1) {
-            wheel1.setPower(-0.6);
-            wheel2.setPower(-0.6);
-            wheel3.setPower(-0.6);
-            wheel4.setPower(-0.6);
-        }
+        if (gamepad1.left_stick_y > 0.3) { wheelsSetPower( 0.7, -0.7, 0.7, -0.7 ); }
+        else if (gamepad1.left_stick_y < -0.3) { wheelsSetPower( -0.7, 0.7, -0.7, 0.7 ); }
+        if (gamepad1.left_stick_x > 0.3) { wheelsSetPower( 0.7, -0.7 ); }
+        else if (gamepad1.left_stick_x < -0.3) { wheelsSetPower( -0.7, 0.7 ); }
 
-        if (gamepad1.right_stick_y > -0.3 && gamepad1.right_stick_y < 0.3) {
-            wheel1.setPower(0);
-            wheel2.setPower(0);
-            wheel3.setPower(0);
-            wheel4.setPower(0);
-        }
-        if (gamepad1.right_stick_x > -0.3 && gamepad1.left_stick_x < 0.3) {
-            wheel1.setPower(0);
-            wheel2.setPower(0);
-            wheel3.setPower(0);
-            wheel4.setPower(0);
-        }
-        if (gamepad1.right_stick_y > 0.3) {
-            wheel1.setPower(0.35);
-            wheel2.setPower(-0.35);
-            wheel3.setPower(0.35);
-            wheel4.setPower(-0.35);
-        }
-        if (gamepad1.right_stick_y < -0.3) {
-            wheel1.setPower(-0.35);
-            wheel2.setPower(0.35);
-            wheel3.setPower(-0.35);
-            wheel4.setPower(0.35);
-        }
-        if (gamepad1.right_stick_x > 0.3) {
-            wheel1.setPower(0.35);
-            wheel2.setPower(0.35);
-            wheel3.setPower(-0.35);
-            wheel4.setPower(-0.35);
-        }
-        if (gamepad1.right_stick_x < -0.3) {
-            wheel1.setPower(-0.35);
-            wheel2.setPower(-0.35);
-            wheel3.setPower(0.35);
-            wheel4.setPower(0.35);
-        }
+        if (gamepad1.left_trigger ==1) { wheelsSetPower( 0.6 ); }
+        if (gamepad1.right_trigger == 1) { wheelsSetPower( -0.6 ); }
 
-        if (gamepad1.left_bumper) {
-            claw.setPosition(openClaw);
-        }
+        if (gamepad1.right_stick_y > 0.3) { wheelsSetPower( 0.35, -0.35 ); }
+        else if (gamepad1.right_stick_y < -0.3) { wheelsSetPower( -0.35, 0.35 ); }
+        if (gamepad1.right_stick_x > 0.3) { wheelsSetPower( 0.35, -0.35 ); }
+        else if (gamepad1.right_stick_x < -0.3) { wheelsSetPower( -0.35, 0.35 ); }
 
-        if (gamepad1.right_bumper) {
-            claw.setPosition(closeClaw);
-        }
+        if (gamepad1.left_bumper) { claw.setPosition(openClaw); }
+        if (gamepad1.right_bumper) { claw.setPosition(closeClaw); }
+        if (gamepad2.left_bumper) { claw.setPosition(openClaw); }
+        if (gamepad2.right_bumper) { claw.setPosition(closeClaw); }
+        if (gamepad2.y) { moveSlides(3338); }
+        if (gamepad2.b) { moveSlides(2475); }
+        if (gamepad2.x) { moveSlides(1875); }
+        if (gamepad2.a) { moveSlides(0); }
+        if (gamepad2.left_stick_y > 0.3) { manualSlides(true); }
+        if (gamepad2.left_stick_y < -0.3) { manualSlides(false); }
 
-        if (gamepad2.left_bumper) {
-            claw.setPosition(openClaw);
-        }
+    }
 
-        if (gamepad2.right_bumper) {
-            claw.setPosition(closeClaw);
-        }
+    public void wheelsSetPower( int p1, int p2, int p3, int p4 ) {
+        wheel1.setPower(p1);
+        wheel2.setPower(p2);
+        wheel3.setPower(p3);
+        wheel4.setPower(p4);
+    }
 
-        if (gamepad2.y) {
-            moveSlides(3338);
-        }
+    public void wheelsSetPower (int p1, int p3 ) {
+        wheelsSetPower( p1, p1, p3, p3 );
+    }
 
-        if (gamepad2.b) {
-            moveSlides(2475);
-        }
-
-        if (gamepad2.x) {
-            moveSlides(1875);
-        }
-
-        if (gamepad2.a) {
-            moveSlides(0);
-        }
-
-        if (gamepad2.left_stick_y > 0.3) {
-            manualSlides(true);
-        }
-
-        if (gamepad2.left_stick_y < -0.3) {
-            manualSlides(false);
-        }
-
+    public void wheelsSetPower (int p1 ) {
+        wheelsSetPower( p1, p1, p1, p1 );
     }
 
     public void moveSlides (int distance) {
