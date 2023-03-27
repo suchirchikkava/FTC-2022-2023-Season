@@ -116,9 +116,9 @@ public class TeleNew extends OpMode {
     public void wheelMove (double p1, double p2, double p3, double p4)
     {
         wheel1.setPower(p1);
-        wheel1.setPower(p2);
-        wheel1.setPower(p3);
-        wheel1.setPower(p4);
+        wheel2.setPower(p2);
+        wheel3.setPower(p3);
+        wheel4.setPower(p4);
     }
 
     public void moveSlides (int distance) {
