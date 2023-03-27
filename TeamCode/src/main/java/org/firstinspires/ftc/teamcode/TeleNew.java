@@ -38,134 +38,87 @@ public class TeleNew extends OpMode {
 
     @Override
     public void loop() {
+            //Neutral condition for vertical
+        if (gamepad1.left_stick_y > -0.3 && gamepad1.left_stick_y < 0.3) { wheelMove (0, 0, 0, 0); }
 
-        if (gamepad1.left_stick_y > -0.3 && gamepad1.left_stick_y < 0.3) {
-            wheel1.setPower(0);
-            wheel2.setPower(0);
-            wheel3.setPower(0);
-            wheel4.setPower(0);
-        }
-        if (gamepad1.left_stick_x > -0.3 && gamepad1.left_stick_x < 0.3) {
-            wheel1.setPower(0);
-            wheel2.setPower(0);
-            wheel3.setPower(0);
-            wheel4.setPower(0);
-        }
-        if (gamepad1.left_stick_y < 0.3) {
-            wheel1.setPower(0.7);
-            wheel2.setPower(-0.7);
-            wheel3.setPower(0.7);
-            wheel4.setPower(-0.7);
-        }
-        if (gamepad1.left_stick_y > -0.3) {
-            wheel1.setPower(-0.7);
-            wheel2.setPower(0.7);
-            wheel3.setPower(-0.7);
-            wheel4.setPower(0.7);
-        }
-        if (gamepad1.left_stick_x < 0.3) {
-            wheel1.setPower(0.7);
-            wheel2.setPower(0.7);
-            wheel3.setPower(-0.7);
-            wheel4.setPower(-0.7);
-        }
-        if (gamepad1.left_stick_x > -0.3) {
-            wheel1.setPower(-0.7);
-            wheel2.setPower(-0.7);
-            wheel3.setPower(0.7);
-            wheel4.setPower(0.7);
-        }
+            //Neutral condition for horizontal
+        if (gamepad1.left_stick_x > -0.3 && gamepad1.left_stick_x < 0.3) { wheelMove (0, 0, 0, 0); }
 
-        if (gamepad1.left_bumper) {
-            wheel1.setPower(0.6);
-            wheel2.setPower(0.6);
-            wheel3.setPower(0.6);
-            wheel4.setPower(0.6);
-        }
-        if (gamepad1.right_bumper) {
-            wheel1.setPower(-0.6);
-            wheel2.setPower(-0.6);
-            wheel3.setPower(-0.6);
-            wheel4.setPower(-0.6);
-        }
+            //Go up
+        if (gamepad1.left_stick_y < 0.3) { wheelMove (0.7, -0.7, 0.7, -0.7); }
 
-       if (gamepad1.right_stick_y > -0.3 && gamepad1.right_stick_y < 0.3) {
-            wheel1.setPower(0);
-            wheel2.setPower(0);
-            wheel3.setPower(0);
-            wheel4.setPower(0);
-        }
-        if (gamepad1.right_stick_x > -0.3 && gamepad1.left_stick_x < 0.3) {
-            wheel1.setPower(0);
-            wheel2.setPower(0);
-            wheel3.setPower(0);
-            wheel4.setPower(0);
-        }
-        if (gamepad1.right_stick_y < 0.3) {
-            wheel1.setPower(0.35);
-            wheel2.setPower(-0.35);
-            wheel3.setPower(0.35);
-            wheel4.setPower(-0.35);
-        }
-        if (gamepad1.right_stick_y > -0.3) {
-            wheel1.setPower(-0.35);
-            wheel2.setPower(0.35);
-            wheel3.setPower(-0.35);
-            wheel4.setPower(0.35);
-        }
-        if (gamepad1.right_stick_x < 0.3) {
-            wheel1.setPower(0.35);
-            wheel2.setPower(0.35);
-            wheel3.setPower(-0.35);
-            wheel4.setPower(-0.35);
-        }
-        if (gamepad1.right_stick_x > -0.3) {
-            wheel1.setPower(-0.35);
-            wheel2.setPower(-0.35);
-            wheel3.setPower(0.35);
-            wheel4.setPower(0.35);
-        }
+            //Go down
+        if (gamepad1.left_stick_y > -0.3) { wheelMove (-0.7, 0.7, -0.7, 0.7); }
 
-        if (gamepad1.left_trigger == 1) {
-            claw.setPosition(openClaw);
-        }
+            //Go right
+        if (gamepad1.left_stick_x < 0.3) { wheelMove (0.7, 0.7, -0.7, -0.7); }
 
-        if (gamepad1.right_trigger == 1) {
-            claw.setPosition(closeClaw);
-        }
+            //Go left
+        if (gamepad1.left_stick_x > -0.3) { wheelMove (-0.7, -0.7, 0.7, 0.7); }
 
-        if (gamepad2.left_bumper) {
-            claw.setPosition(openClaw);
-        }
+            //Rotate Left
+        if (gamepad1.left_bumper) { wheelMove (0.6, 0.6, 0.6, 0.6); }
 
-        if (gamepad2.right_bumper) {
-            claw.setPosition(closeClaw);
-        }
+            //Rotate Right
+        if (gamepad1.right_bumper) { wheelMove (-0.6, -0.6, -0.6, -0.6); }
 
-        if (gamepad2.y) {
-            moveSlides(3338);
-        }
+            //Neutral For Slow Move for vertical
+        if (gamepad1.right_stick_y > -0.3 && gamepad1.right_stick_y < 0.3) { wheelMove (0, 0, 0, 0); }
 
-        if (gamepad2.b) {
-            moveSlides(2475);
-        }
+            //Neutral For Slow Move for horizontal
+        if (gamepad1.right_stick_x > -0.3 && gamepad1.left_stick_x < 0.3) { wheelMove (0, 0, 0, 0); }
 
-        if (gamepad2.x) {
-            moveSlides(1875);
-        }
+            //Move Up For Slow Move
+        if (gamepad1.right_stick_y < 0.3) { wheelMove (0.35, -0.35, 0.35, -0.35); }
 
-        if (gamepad2.a) {
-            moveSlides(0);
-        }
+            //Move Down For Slow Move
+        if (gamepad1.right_stick_y > -0.3) { wheelMove (-0.35, 0.35, -0.35, 0.35); }
 
-        if (gamepad2.left_stick_y > 0.3) {
-            manualSlides(true);
-        }
+            //Move Right For Slow Move
+        if (gamepad1.right_stick_x < 0.3) { wheelMove (0.35, 0.35, -0.35, -0.35); }
 
-        if (gamepad2.left_stick_y < -0.3) {
-            manualSlides(false);
-        }
+            //Move Left For Slow Move
+        if (gamepad1.right_stick_x > -0.3) { wheelMove (-0.35, -0.35, 0.35, 0.35); }
 
+            //Open Claw
+        if (gamepad1.left_trigger == 1) { claw.setPosition(openClaw); }
+
+            //Close Claw
+        if (gamepad1.right_trigger == 1) { claw.setPosition(closeClaw); }
+
+            //Gamepad 2 Open Claw
+        if (gamepad2.left_bumper) { claw.setPosition(openClaw); }
+
+            //Gamepad 2 Close Claw
+        if (gamepad2.right_bumper) { claw.setPosition(closeClaw); }
+
+            //Slides all the way up
+        if (gamepad2.y) { moveSlides(3338); }
+
+            //Slides middle up
+        if (gamepad2.b) { moveSlides(2475); }
+
+            //Slides low up
+        if (gamepad2.x) { moveSlides(1875); }
+
+            //Slides down/reset
+        if (gamepad2.a) { moveSlides(0); }
+
+            //Manual slide move up
+        if (gamepad2.left_stick_y > 0.3) { manualSlides(true); }
+
+            //Manual slide move down
+        if (gamepad2.left_stick_y < -0.3) { manualSlides(false); }
+
+    }
+
+
+    public void wheelMove (double p1, double p2, double p3, double p4)
+    {
+        wheel1.setPower(p1);
+        wheel1.setPower(p2);
+        wheel1.setPower(p3);
+        wheel1.setPower(p4);
     }
 
     public void moveSlides (int distance) {
